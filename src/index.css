@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+    --color-brand-primary: #ff5ebc; /* Bubblegum Pink */
+    --color-brand-secondary: #42d3ff; /* Sky Blue */
+    --color-brand-accent: #ffd700; /* Sunny Yellow */
+    --color-brand-vibrant: #7bff00; /* Lime Green */
+    --color-bg-light: #fff5fa;
+    --font-sans: "Comic Sans MS", "Quicksand", cursive, sans-serif;
+}
+
+:root {
+    background-color: var(--color-bg-light);
+    color: #333;
+    overflow-x: hidden;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg-light);
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+#root {
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    pointer-events: none;
+}
+
+#root * {
+    pointer-events: auto;
+}
+
+canvas {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 100-Years-Experience: Animated Rainbow Sky */
+@keyframes skyShift {
+    0% { background: #fff5fa; }
+    33% { background: #f0faff; }
+    66% { background: #fffdf0; }
+    100% { background: #fff5fa; }
+}
+
+.sky-bg {
+    animation: skyShift 10s infinite alternate ease-in-out;
+}
+
+/* Playful Rounded Panels with 100-Year Experience Detail */
+.play-panel {
+    background: rgba(255, 255, 255, 0.95);
+    border: 6px solid #333;
+    border-radius: 60px;
+    box-shadow: 15px 15px 0px #333;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    backdrop-blur: 10px;
+}
+
+.play-panel:hover {
+    transform: translateY(-5px) rotate(1deg);
+    box-shadow: 20px 20px 0px rgba(255, 94, 188, 0.8), 25px 25px 0px #333;
+}
+
+.cartoon-text {
+    color: #333;
+    -webkit-text-stroke: 1.5px #fff;
+    filter: drop-shadow(6px 6px 0px #ff5ebc);
+}
+
+.cartoon-text-secondary {
+    -webkit-text-stroke: 1.5px #fff;
+    filter: drop-shadow(4px 4px 0px #42d3ff);
+}
+
+/* Combo Counter Logic (Visual Only) */
+.combo-popup {
+    position: fixed;
+    top: 15vh;
+    right: 5vw;
+    font-size: 8rem;
+    font-weight: 900;
+    color: #ffd700;
+    -webkit-text-stroke: 4px #333;
+    transform: rotate(15deg);
+    z-index: 300;
+    pointer-events: none;
+    filter: drop-shadow(8px 8px 0px #ff5ebc);
+}
+
+/* Custom animation for running */
+@keyframes run {
+    from { transform: translateX(-20vw); }
+    to { transform: translateX(120vw); }
+}
+
+@keyframes characterWobble {
+    0% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-30px) rotate(5deg); }
+    100% { transform: translateY(0) rotate(0); }
+}
+
+.running-char {
+    position: fixed;
+    bottom: 5vh;
+    z-index: 100;
+    pointer-events: auto;
+    animation: run 10s linear infinite;
+}
+
+.wobble-anim {
+    animation: characterWobble 0.5s infinite ease-in-out;
+}
