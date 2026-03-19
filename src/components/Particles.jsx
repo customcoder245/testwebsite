@@ -2,35 +2,21 @@ import React, { useRef, useMemo } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-const Particles = ({ count = 3000 }) => {
+const Particles = ({ count = 2000 }) => {
     const points = useRef()
 
-    const { positions, colors } = useMemo(() => {
+    const particlesPosition = useMemo(() => {
         const positions = new Float32Array(count * 3)
-        const colors = new Float32Array(count * 3)
-        const colorPalette = [
-            new THREE.Color("#ff5ebc"),
-            new THREE.Color("#42d3ff"),
-            new THREE.Color("#ffd700"),
-            new THREE.Color("#7bff00"),
-            new THREE.Color("#ff7f00")
-        ]
-
         for (let i = 0; i < count; i++) {
-            const radius = 15 + Math.random() * 40;
+            const radius = 20 + Math.random() * 30;
             const theta = THREE.MathUtils.randFloatSpread(360); 
             const phi = THREE.MathUtils.randFloatSpread(360); 
 
             positions[i * 3] = radius * Math.sin(theta) * Math.cos(phi);
             positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(phi);
             positions[i * 3 + 2] = radius * Math.cos(theta);
-
-            const c = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-            colors[i * 3] = c.r;
-            colors[i * 3 + 1] = c.g;
-            colors[i * 3 + 2] = c.b;
         }
-        return { positions, colors }
+        return positions
     }, [count])
 
     useFrame((state) => {
@@ -49,22 +35,16 @@ const Particles = ({ count = 3000 }) => {
             <bufferGeometry>
                 <bufferAttribute
                     attach="attributes-position"
-                    count={positions.length / 3}
-                    array={positions}
-                    itemSize={3}
-                />
-                <bufferAttribute
-                    attach="attributes-color"
-                    count={colors.length / 3}
-                    array={colors}
+                    count={particlesPosition.length / 3}
+                    array={particlesPosition}
                     itemSize={3}
                 />
             </bufferGeometry>
             <pointsMaterial
                 size={0.05}
-                vertexColors
+                color="#ff5ebc" 
                 transparent
-                opacity={0.8}
+                opacity={0.6}
                 sizeAttenuation
                 blending={THREE.AdditiveBlending}
             />

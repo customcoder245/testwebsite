@@ -5,7 +5,7 @@
     --color-brand-secondary: #42d3ff; /* Sky Blue */
     --color-brand-accent: #ffd700; /* Sunny Yellow */
     --color-brand-vibrant: #7bff00; /* Lime Green */
-    --color-bg-light: #fff5fa;
+    --color-bg-light: #fff5fa; /* Soft Pinkish White */
     --font-sans: "Comic Sans MS", "Quicksand", cursive, sans-serif;
 }
 
@@ -48,58 +48,27 @@ canvas {
     z-index: 1;
 }
 
-/* 100-Years-Experience: Animated Rainbow Sky */
-@keyframes skyShift {
-    0% { background: #fff5fa; }
-    33% { background: #f0faff; }
-    66% { background: #fffdf0; }
-    100% { background: #fff5fa; }
-}
-
-.sky-bg {
-    animation: skyShift 10s infinite alternate ease-in-out;
-}
-
-/* Playful Rounded Panels with 100-Year Experience Detail */
+/* Playful Rounded Panels */
 .play-panel {
-    background: rgba(255, 255, 255, 0.95);
-    border: 6px solid #333;
-    border-radius: 60px;
-    box-shadow: 15px 15px 0px #333;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    backdrop-blur: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 4px solid #333;
+    border-radius: 50px;
+    box-shadow: 10px 10px 0px #333;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .play-panel:hover {
-    transform: translateY(-5px) rotate(1deg);
-    box-shadow: 20px 20px 0px rgba(255, 94, 188, 0.8), 25px 25px 0px #333;
+    transform: scale(1.02) rotate(1deg);
 }
 
 .cartoon-text {
     color: #333;
-    -webkit-text-stroke: 1.5px #fff;
-    filter: drop-shadow(6px 6px 0px #ff5ebc);
+    -webkit-text-stroke: 1px #fff;
+    filter: drop-shadow(4px 4px 0px #ff5ebc);
 }
 
-.cartoon-text-secondary {
-    -webkit-text-stroke: 1.5px #fff;
-    filter: drop-shadow(4px 4px 0px #42d3ff);
-}
-
-/* Combo Counter Logic (Visual Only) */
-.combo-popup {
-    position: fixed;
-    top: 15vh;
-    right: 5vw;
-    font-size: 8rem;
-    font-weight: 900;
-    color: #ffd700;
-    -webkit-text-stroke: 4px #333;
-    transform: rotate(15deg);
-    z-index: 300;
-    pointer-events: none;
-    filter: drop-shadow(8px 8px 0px #ff5ebc);
-}
+.oggy-blue { color: #42d3ff; }
+.cockroach-purple { color: #8b00ff; }
 
 /* Custom animation for running */
 @keyframes run {
@@ -107,20 +76,10 @@ canvas {
     to { transform: translateX(120vw); }
 }
 
-@keyframes characterWobble {
-    0% { transform: translateY(0) rotate(0); }
-    50% { transform: translateY(-30px) rotate(5deg); }
-    100% { transform: translateY(0) rotate(0); }
-}
-
 .running-char {
     position: fixed;
     bottom: 5vh;
     z-index: 100;
-    pointer-events: auto;
+    pointer-events: none;
     animation: run 10s linear infinite;
-}
-
-.wobble-anim {
-    animation: characterWobble 0.5s infinite ease-in-out;
 }
